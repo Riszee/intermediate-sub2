@@ -3,7 +3,7 @@ export default class AboutModel {
     return {
       name: 'Aufarist Ziandhani Roy Keane Rais',
       bio: "I'm a dedicated developer with a passion for creating intuitive and dynamic user experiences. My expertise spans across front-end and back-end development, enabling me to build complete and efficient web solutions.",
-      image: '../../../public/images/Bojji1.jpeg',
+      image: '/images/Bojji1.jpeg',
       skills: [
         {
           id: 'frontend',
