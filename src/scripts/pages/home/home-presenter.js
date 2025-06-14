@@ -14,6 +14,7 @@ export default class HomePresenter {
 
             if (!token) {
                 this._view.showLoginMessage();
+                this._view.initMap([]); // Tampilkan map meskipun belum login
                 return;
             }
 
