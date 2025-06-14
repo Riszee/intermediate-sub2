@@ -1,5 +1,5 @@
 const DB_NAME = "dicoding-intermediate-db";
-const DB_VERSION = 1;
+const DB_VERSION = 2; // versi dinaikkan agar onupgradeneeded dijalankan ulang
 const STORE_NAME = "bookmarked-reports";
 
 const dbPromise = () => {
