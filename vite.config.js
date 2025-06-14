@@ -22,9 +22,9 @@ export default defineConfig({
             },
             registerType: "autoUpdate",
             includeAssets: [
-                "favicon.png",
-                "images/logo.png",
-                "images/Bojji1.jpeg",
+                "/favicon.png",
+                "/images/logo.png",
+                "/images/Bojji1.jpeg",
             ],
             workbox: {
                 globPatterns: ["**/*.{js,css,html,png,jpg,jpeg,svg,ico,json}"],
