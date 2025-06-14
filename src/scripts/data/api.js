@@ -1,4 +1,5 @@
 import CONFIG from '../config';
+import { saveStories, getAllStories } from "./stories-DB";
 
 const ENDPOINTS = {
   REGISTER: `${CONFIG.BASE_URL}/register`,
@@ -82,10 +83,24 @@ export async function getStories({ page = 1, size = 10, location = 0, token }) {
   url.searchParams.append('page', page);
   url.searchParams.append('size', size);
   url.searchParams.append('location', location);
-  const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return await response.json();
+  try {
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    if (response.ok && data.listStory) {
+      // Simpan ke IndexedDB jika online
+      await saveStories(data.listStory);
+    }
+    return data;
+  } catch (error) {
+    // Jika offline, ambil dari IndexedDB
+    const stories = await getAllStories();
+    if (stories.length > 0) {
+      return { listStory: stories, error: false, message: 'Loaded from offline cache' };
+    }
+    return { listStory: [], error: true, message: 'Tidak dapat memuat stories secara offline.' };
+  }
 }
 
 export async function getStoryDetail(id, token) {
